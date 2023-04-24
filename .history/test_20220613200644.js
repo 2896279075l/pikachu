@@ -201,62 +201,63 @@ const string = `.skin * {
 
 .face.right {
     transform: translateX(170px);
-}`;
+}`
 
 let n = 1;
-let time = 10;
+let time = 50;
 let id;
 
 const player = {
-  init: () => {
-    player.play();
-    player.bindEvents();
-  },
-  events: {
-    "#btnPause": "pause",
-    "#btnPlay": "play",
-    "#btnSlow": "slow",
-    "#btnNormal": "normal",
-    "#btnFast": "fast",
-  },
-  bindEvents: () => {
-    for (let key in player.events) {
-      if (player.events.hasOwnProperty(key)) {
-        document.querySelector(key).onclick = player[player.events[key]];
-      }
+    init: () => {
+        player.play();
+        player.bindEvents();
+    },
+    events: {
+        '#btnPause': 'pause',
+        '#btnPlay': 'play',
+        '#btnSlow': 'slow',
+        '#btnNormal': 'normal',
+        '#btnFast': 'fast'
+    },
+    bindEvents: () => {
+        for (let key in player.events) {
+            if (player.events.hasOwnProperty(key)) {
+                document.querySelector(key).onclick = player[player.events[key]];
+            }
+        }
+    },
+    run: () => {
+        n += 1;
+        if (n > string.length) {
+            window.clearInterval(id)
+            return
+        }
+        demo.innerText = string.substring(0, n);
+        demo2.innerHTML = string.substring(0, n);
+        demo.scrollTop = demo.scrollHeight;
+    },
+    play: () => {
+        return id = setInterval(player.run, time)
+    },
+    pause: () => {
+        window.clearInterval(id)
+    },
+    slow: () => {
+        player.pause();
+        time = 200;
+        player.play();
+    },
+    normal: () => {
+        player.pause();
+        time = 50;
+        player.play()
+    },
+    fast: () => {
+        player.pause();
+        time = 0;
+        player.play()
     }
-  },
-  run: () => {
-    n += 1;
-    if (n > string.length) {
-      window.clearInterval(id);
-      return;
-    }
-    demo.innerText = string.substring(0, n);
-    demo2.innerHTML = string.substring(0, n);
-    demo.scrollTop = demo.scrollHeight;
-  },
-  play: () => {
-    return (id = setInterval(player.run, time));
-  },
-  pause: () => {
-    window.clearInterval(id);
-  },
-  slow: () => {
-    player.pause();
-    time = 20;
-    player.play();
-  },
-  normal: () => {
-    player.pause();
-    time = 10;
-    player.play();
-  },
-  fast: () => {
-    player.pause();
-    time = 0;
-    player.play();
-  },
-};
+}
+
 
 player.init();

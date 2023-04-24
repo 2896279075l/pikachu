@@ -204,7 +204,7 @@ const string = `.skin * {
 }`;
 
 let n = 1;
-let time = 10;
+let time = 50;
 let id;
 
 const player = {
@@ -244,12 +244,12 @@ const player = {
   },
   slow: () => {
     player.pause();
-    time = 20;
+    time = 80;
     player.play();
   },
   normal: () => {
     player.pause();
-    time = 10;
+    time = 30;
     player.play();
   },
   fast: () => {

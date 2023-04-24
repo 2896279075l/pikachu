@@ -204,7 +204,7 @@ const string = `.skin * {
 }`;
 
 let n = 1;
-let time = 10;
+let time = 50;
 let id;
 
 const player = {
